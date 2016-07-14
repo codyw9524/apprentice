@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Group Chat</title>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var socket = io.connect();
+
+			var name = prompt('What is your name?');
+
+			if(name){
+				$('#chatBox, #message').css('display', 'block');
+			}
+
+			$('form').submit(function(){
+				socket.emit('chatSent', {name: name, message: $('#message').val()});
+				$('#message').val('');
+				return false;
+			})
+
+			socket.on('updateChat', function(res){
+				var html_str = '';
+				html_str += '<p><span>' + res.name + '</span>: ' + res.message + '</p>';
+				$('#chatBox').append(html_str);
+			})
+		})
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div id="chatBox">
+		<% for (i in messages) { %>
+			<p><span><%= messages[i].name %></span>: <%= messages[i].message %></p>
+		<% } %>
+		</div>
+		<form action="" method="post">
+			<input type="text" id="message" placeholder="Enter your message here..">
+		</form>
+	</div>
+</body>
+</html>

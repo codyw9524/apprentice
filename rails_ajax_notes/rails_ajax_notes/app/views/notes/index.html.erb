@@ -1,0 +1,17 @@
+<h1>Ajax Notes</h1>
+<h3>New Note</h3>
+<form action="/notes" method="post">
+	<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+	<p>
+		<input type="text" name="title" id="title">
+		<input type="submit" value="Create">
+	</p>
+</form>
+<form id="search_form" action="/notes/search" method="post">
+	<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+	<input type="text" name="search" id="search">
+	<input type="submit" value="Search">
+</form>
+<div id="notes">
+	<%= render :partial => 'partials/notes', :locals => {notes: @notes} %>
+</div>

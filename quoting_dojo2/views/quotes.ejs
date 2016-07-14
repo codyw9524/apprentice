@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quoting Dojo</title>
+</head>
+<body>
+	<h1>Here are some awesome quotes!</h1>
+	<% for(x in quotes) { %>
+		<p>"<%= quotes[x].quote %>"</p>
+		<p>-<%= quotes[x].name %> on <%= quotes[x].created_at.toString().split(' ').splice(0,4).join(' ') %> | Likes: <%= quotes[x].likes%></p>
+		<form action="/likes" method="post">
+			<input type="hidden" name="id" value="<%=quotes[x]._id%>">
+			<input type="submit" value="Like">
+		</form>
+		<hr>
+	<% } %>
+	<a href="/">Back</a>
+</body>
+</html>
