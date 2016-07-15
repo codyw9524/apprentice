@@ -10,6 +10,6 @@ $(document).on('keyup', '#search', function(){
 	$(this).submit();
 })
 
-$(document).on('change', '#search_form', function(){
-	$(this).submit();
-})
+// $(document).on('change', '#search_form', function(){
+// 	$(this).submit();
+// })
