@@ -1,10 +1,9 @@
 function quickSort(arr) {
 	var pivot;
-	var l_arr = []
-	var g_arr = []
-	console.log(arr);
+	var l_arr = [];
+	var g_arr = [];
 	if(arr.length < 2){
-		return arr
+		return arr;
 	}
 	pivot = arr[0];
 	for (var i = 1; i < arr.length; i++){
